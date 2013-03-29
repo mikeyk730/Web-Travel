@@ -1,0 +1,32 @@
+html body.mobile, body.mobile, body.mobile #main_page, body.mobile #content, body.mobile #map_canvas, body.mobile #sidebar
+{ 
+   height: 100%;
+}
+
+body.mobile #main_page, body.mobile #content
+{
+    width: auto;
+}
+
+body.mobile #content
+{
+    border: none;
+}
+
+body.mobile #map_canvas
+{
+    margin: 0;
+    border: none;
+}
+
+body.mobile #header, body.mobile #links, body.mobile #recent_container
+{
+    display: none;
+}
+
+body.mobile #options
+{
+    position: absolute;
+    bottom: 0px;
+    right: 250px;
+}

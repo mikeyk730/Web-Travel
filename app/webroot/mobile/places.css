@@ -1,0 +1,235 @@
+﻿html, body, #map_canvas, #sidebar
+{ 
+   height: 100%;
+}
+
+body
+{ 
+   font-family: Verdana, Helvetica, Sans-Serif;
+   font-size: 0.8em;
+   margin: 0;
+}
+
+.loader *
+{
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+div.date { margin-top: 5px; }
+
+a img { border: none; }
+
+div.category {
+    margin: 5px;
+    font-size: 1.3em;
+}
+div.category ol {
+    font-size: 0.8em;
+}
+
+#title {
+    margin: 5px 0px 5px 0px;
+    text-align: center;
+}
+
+#prev, #next{
+    width: 13px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 2px 2px 0px 0px;
+}
+
+#current-place {
+    width: 196px;
+    display: inline-block;
+    font-size: 1.3em; 
+    margin: 0px; 
+}
+
+#prev.enabled {
+    background-image:url('../images/prev.png');
+}
+
+#prev.disabled {
+    background-image:url('../images/prev-disabled.png');
+}
+
+#next.enabled {
+    background-image:url('../images/next.png');
+}
+
+#next.disabled {
+    background-image:url('../images/next-disabled.png');
+}
+
+#latlon
+{
+   padding-bottom: 5px;
+   border-bottom: 1px solid Gray;
+   font-size: 0.8em;
+   font-weight: normal;
+   color: Gray;
+   vertical-align: middle;
+   text-align: center;
+   margin: 5px 0px;
+}
+#latlon:hover
+{
+   text-decoration: underline;
+   cursor: pointer;
+}
+#latlon img
+{
+   margin-bottom: -2px;
+   margin-right: 5px;
+   !margin-left: 7px;
+}
+
+#airport img
+{
+   margin-bottom: -2px;
+   margin-right: 5px;
+   margin-left: 7px;
+}
+
+a { text-decoration: none; }
+
+#sidebar
+{
+   width: 229px;
+   padding-left: 10px;
+   padding-right: 10px;
+   background-color: #d1dcf8;
+   border-left: solid 1px #808080;
+   position: absolute;
+   right: 0;
+   top: 0;
+}
+
+#map_canvas
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#sidebar input[type=text], #sidebar textarea
+{
+   width:220px;
+}
+
+.photo
+{
+   width:215px;
+   border: solid 1px #808080;
+   background-color: #fff;
+   padding:6px;
+   margin-left: auto;
+   margin-right: auto;
+   display: block;
+}
+
+.flag
+{
+   margin-bottom:2px;
+   margin-right:5px;
+   vertical-align: middle;
+}      
+
+.hidden
+{
+   display: none;
+   visibility: collapse;
+}
+
+.edit-icon
+{
+   cursor:pointer;
+   opacity:0.2;
+   vertical-align:bottom;
+   margin-left:5px;
+}
+
+.edit-icon:hover
+{
+   opacity:1.0;
+}
+
+#description-area, #image-area, #airport, #best_time
+{
+   margin: 5px 0px 5px 0px;
+}
+
+button
+{
+   margin-top:2px;
+}
+
+#list-link
+{
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   padding: 10px;
+}
+
+.coverage
+{
+  margin: 2px 0px 2px 22px;
+}
+
+.coverage img
+{
+   margin-right: 6px;
+}
+
+#best_time table
+{
+   margin-top: 2px;
+   border-collapse: collapse;
+   margin-right: auto;
+   margin-left: auto;   
+}
+
+.progress
+{
+   background-color: #fff;
+   width: 15px;
+   height: 18px;
+   border: solid 1px black;
+   text-align: center;
+   padding: 0px;
+   vertical-align: baseline;
+}
+
+.progress.filled
+{
+   background-color: #bcff9f;
+}
+
+#photos
+{
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 15px;
+}
+
+#visa img
+{
+   height:18px;
+}
+
+#visa-area { margin: 5pt 0; }
+
+#options
+{
+   padding: 3px;
+   background-color: White;
+   position: absolute;
+   bottom: 0px;
+   right: 250px;
+   border-top: solid 1px black;
+   border-left: solid 1px black;
+}

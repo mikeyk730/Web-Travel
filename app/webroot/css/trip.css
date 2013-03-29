@@ -1,0 +1,11 @@
+﻿body
+{ 
+   font-family: Verdana, Helvetica, Sans-Serif;
+   font-size: 0.8em;
+   margin: 0;
+}
+
+div.description
+{
+    width: 600px;
+}
