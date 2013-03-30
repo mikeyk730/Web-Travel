@@ -7,14 +7,14 @@ var MapGlobals =
 };
 
 function getIcon(affinity) {
-   if (affinity == "want") return 'images/map-push-pin-red.png';
-   else if (affinity == "will") return 'images/map-push-pin-orange.png';
-   else if (affinity == 'current') return 'images/map-push-pin-purple.png';
-   else return 'images/map-push-pin-green.png';
+   if (affinity == "want") return '/travel/images/map-push-pin-red.png';
+   else if (affinity == "will") return '/travel/images/map-push-pin-orange.png';
+   else if (affinity == 'current') return '/travel/images/map-push-pin-purple.png';
+   else return '/travel/images/map-push-pin-green.png';
 }
 
 function getFlag(code) {
-   return 'images/flags/' + code.toLowerCase() + '.png';
+   return '/travel/images/flags/' + code.toLowerCase() + '.png';
 }
 
 function panAndZoom(lat, lon, zoom) {

@@ -2,7 +2,7 @@
       {
         var loaders = $('.loader');
         loaders.each(function(i, loader){
-          $(loader).append($('<img src="images/loading.gif"><span>Loading...</span>'));
+          $(loader).append($('<img src="/travel/images/loading.gif"><span>Loading...</span>'));
         });
       }
 

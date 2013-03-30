@@ -2,6 +2,48 @@
 class TripsController extends AppController {
    //public $scaffold;
 
+   private function default_trip_id()
+   {
+      return 1;
+   }
+
+   private function set_trip_data($id)
+   {
+      if ($id == null) $id = $this->default_trip_id();
+      $this->Trip->id = $id;
+      $this->Trip->contain(array('Location' => array('order' => array('order'), 
+                                                     'City' => array('fields' => array('lat','lon','name','address'),
+                                                                     'Country' => array('fields' => array('name','code'))))));
+      $data = $this->Trip->read();
+    
+      $locations = $data['Location'];
+      foreach ($locations as $i => $location){
+        $data['Location'][$i]['name'] = $this->Trip->Location->get_name($location);
+      }
+
+      $this->set('trip', $data);   
+   }
+
+   public function index($id = null)
+   {
+     $this->redirect(array('action' => 'map', $id));
+   }
+
+   public function map($id = null)
+   {
+      $this->set_trip_data($id);
+   }
+
+   public function listing($id = null)
+   {
+      $this->set_trip_data($id);
+   }
+
+   public function collage($id = null)
+   {
+      $this->set_trip_data($id);
+   }
+
    public function get_json($id = null)
    {
       //$this->Trip->recursive = 2;
