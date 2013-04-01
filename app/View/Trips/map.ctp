@@ -13,7 +13,30 @@
     <link type="text/css" rel="stylesheet" href="<?php echo $this->Html->url('/css/places.css') ?>"></link>
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script type="text/javascript" src="<?php echo $this->Html->url('/js/jquery-1.6.1.js') ?>"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<style>
+    .ui-menu { position: absolute; width: 200px; z-index:999999 }
+  
+    .ui-button-text-only .ui-button-text
+    {
+      padding: .2em .3em .2em .2em;
+      font-size: 1.5em;
+      color: black;
+    }
+
+    .ui-button-icon-only .ui-button-text
+    {
+      padding: .2em;
+      font-size: 1.5em;
+    }
+
+    .ui-buttonset .ui-button
+    {
+      margin-right: -.4em;
+    }
+</style>
     <script type="text/javascript" src="<?php echo $this->Html->url('/js/fancybox-2.0/jquery.fancybox.pack.js') ?>"></script>
     <script type="text/javascript" src="<?php echo $this->Html->url('/js/jquery.ba-hashchange.min.js') ?>"></script>
     <script type="text/javascript" src="<?php echo $this->Html->url('/js/jcarousel/jquery.jcarousel.min.js') ?>"></script>
@@ -88,12 +111,47 @@ var MyPlaces = {
     <div id="main_page" data-trip-status="<?php echo $trip['Trip']['status'] ?>">
       <div id="header_container">
 	<div id="header">
-	  <div id="header1"><?php echo h($trip['Trip']['name']); ?></div>
+	  <!--div id="header1"><?php echo($trip['Trip']['name']); ?></div-->
+<div>
+  <div id="trip-menu-buttons">
+    <button id="null-button"><?php echo($trip['Trip']['name']); ?></button>
+    <button id="select" title="Select Trip">v</button>
+  </div>
+  <ul id="trip-menu">
+  </ul>
+</div>
+
 	  <div id="where">
 <?php
    if ($trip['Trip']['status'] == 'in_progress')
      echo ('Where am I now? <span id="where_am_i"></span>!');
-   else echo $trip['Trip']['description'];
+   else {
+     $year_str = null;
+
+     if ($trip['Trip']['start_date']) {
+       $start = strtotime($trip['Trip']['start_date']);
+       $start_year = date('M Y', $start);
+       $year_str = $start_year;
+   
+       if ($trip['Trip']['end_date']) {
+         $end = strtotime($trip['Trip']['end_date']);
+         $end_year = date('M Y', $end);
+         if (strcmp($start_year, $end_year))
+           $year_str .= "-".$end_year;  
+
+         $seconds_diff = $end - $start;
+         $days_diff = floor($seconds_diff/3600/24);
+         $year_str .= " / $days_diff days"; 
+       }
+       $year_str .= " / "; 
+     }
+
+     //$diff = $start->diff($end);
+     //echo $diff->format('%R'); // use for point out relation: smaller/greater
+     //echo $diff->days;
+
+     echo $year_str.$trip['Trip']['description'];
+   }
 ?>
 	  </div>
 	</div>
@@ -120,7 +178,49 @@ var MyPlaces = {
 	  <div id="recent_container"></div>
 	</div>
       </div>
-      <div id="trip-select">Other trips:</div>
+
+
+<script>
+  $(function() {
+    $("#null-button")
+      .button()
+ .click(function() {
+          var menu = $( this ).parent().next().show().position({
+            my: "left top",
+            at: "left bottom",
+            of: this
+          });
+          $( document ).one( "click", function() {
+            menu.hide();
+          });
+          return false;
+        })
+      .next()
+        .button({
+          text: false,
+          icons: {
+            primary: "ui-icon-triangle-1-s"
+          }
+        })
+        .click(function() {
+          var menu = $( this ).parent().next().show().position({
+            my: "left top",
+            at: "left bottom",
+            of: 'null-button'
+          });
+          $( document ).one( "click", function() {
+            menu.hide();
+          });
+          return false;
+        }); 
+	    $("#trip-menu-buttons").buttonset();
+	    $('#trip-menu').hide().menu();
+  });
+
+  </script>
     </div>
+
+
+
   </body>
 </html>

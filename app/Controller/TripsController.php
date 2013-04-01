@@ -107,17 +107,25 @@ class TripsController extends AppController {
       return parent::json_response($data);
    }
 
+   private function extract_date($date_time)
+   {
+      if(!$date_time)
+        return $date_time;
+      $a = explode(' ', $date_time);
+      return $a[0];
+   }
+
    public function get_trips()
    {
       $this->Trip->recursive = -1;
-      $trips = $this->Trip->find("all");
+      $trips = $this->Trip->find("all", array('order' => array('start_date DESC')));
 
       $data = array();
       foreach ($trips as $trip){
-        $trip = $trip['Trip'];      
+        $trip = $trip['Trip'];
         $data[] = array('id' => $trip['id'],
-                        'start_data' => $trip['start_date'],
-                        'end_date' => $trip['end_date'],
+                        'start_date' => $this->extract_date($trip['start_date']),
+                        'end_date' => $this->extract_date($trip['end_date']),
                         'description' => $trip['description'],
                         'status' => $trip['status'],
                         'name' => $trip['name']);

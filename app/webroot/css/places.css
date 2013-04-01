@@ -13,7 +13,7 @@
 #where
 {
     color: gray;
-    padding: 5px 2px;
+    padding: 1px 3px 5px 4px;
 }
 
 #where_am_i
@@ -284,7 +284,7 @@ a { text-decoration: none; }
 
 button
 {
-   margin-top:2px;
+/*   margin-top:2px;  */
 }
 
 #list-link
@@ -354,4 +354,11 @@ button
     background-color: white;
     border-top: solid 1px black;
     border-left: solid 1px black;
+}
+
+.trip-select-button
+{
+  height: 25px;
+  vertical-align: middle;
+  margin-left: 3px;
 }
