@@ -1,13 +1,18 @@
 <?php 
   function print_affinity($trip, $a, $header, $url)
   { 
-    echo '<div class="category">'.$header.'<ol id="$a">';
+    $first = 1;
     foreach ($trip['Location'] as $location){
       if ($location['affinity'] == $a){
+        if ($first){
+          echo '<div class="category">'.$header.'<ol id="$a">';
+	  $first = 0;
+	}
         echo "<li><a href='".$url."#".$location['id']."'>".h($location['name'])."</a></li>";
       }
     }
-   echo '</ol></div>';
+   if ($first == 0)
+     echo '</ol></div>';
   }
 ?> 
 <!DOCTYPE html>
@@ -39,7 +44,7 @@
       <div id="content">
 	<?php 
 	   $url = $this->Html->url("/trips/map/".$trip['Trip']['id']);
-	   print_affinity($trip, 'been', "Where I've Been", $url);
+           print_affinity($trip, 'been', "Where I've Been", $url);
            print_affinity($trip, 'will', "Where I'm Going", $url);
            print_affinity($trip, 'want', "Where I Want To Go", $url);
 	?>

@@ -48,7 +48,9 @@
         layout(images);
       }
 
+$(document).ready(function(){
       handlePlaces();
+});
     </script>
  </head>
   <body>
@@ -62,9 +64,10 @@
 	<a href="<?php echo $this->Html->url('/trips/listing/'.$trip['Trip']['id']) ?>">Location List</a> | Photo Collage
       </div>
       <div id="content">
-	<div class="category">Where I've Been</div><div class="loader"></div>
+	<div class="loader"></div>
+	<div id="photos-been-title" class="category"></div>
 	<div id="photos-been"></div>
-	<div class="category">Where I Want To Go</div><div class="loader"></div>
+	<div id="photos-want-title" class="category"></div>
 	<div id="photos-want"></div>
       </div>
     </div>

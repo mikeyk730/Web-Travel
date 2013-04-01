@@ -55,8 +55,10 @@ function onLoaded(img, title, link, affinity) {
    }
 
    var id = (affinity == 'been') ? '#photos-been' : '#photos-want';
+   var title_id = id + '-title';
+   var title = (affinity == 'been') ? "Where I've Been" : 'Where I Want To Go';
    var array = (affinity == 'been') ? loaded_images_been : loaded_images_want;
-
+   $(title_id).text(title);
    $(id).append(element);
    array.push({ id: img.attr('id'), width: img.width(), height: img.height() });
    arrange(array);
@@ -69,6 +71,7 @@ function loadClosure(img, title, link, affinity) {
 }
 
 function layout(images) {
+   startLoad();
    total_image_count = images.length;
    // add all images to the page
    for (var i = 0; i < images.length; ++i) {
