@@ -120,7 +120,7 @@ var MyPlaces = {
 	  <div id="recent_container"></div>
 	</div>
       </div>
-      <div id="footer"></div>
+      <div id="trip-select">Other trips:</div>
     </div>
   </body>
 </html>

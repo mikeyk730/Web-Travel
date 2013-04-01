@@ -107,6 +107,24 @@ class TripsController extends AppController {
       return parent::json_response($data);
    }
 
+   public function get_trips()
+   {
+      $this->Trip->recursive = -1;
+      $trips = $this->Trip->find("all");
+
+      $data = array();
+      foreach ($trips as $trip){
+        $trip = $trip['Trip'];      
+        $data[] = array('id' => $trip['id'],
+                        'start_data' => $trip['start_date'],
+                        'end_date' => $trip['end_date'],
+                        'description' => $trip['description'],
+                        'status' => $trip['status'],
+                        'name' => $trip['name']);
+      }
+      return parent::json_response($data);
+   }
+   
    public function get_albums($id = null)
    {
       $this->Trip->id = $id;

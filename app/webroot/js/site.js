@@ -144,10 +144,26 @@ function local_init()
     }
 }
 
+function addTripSelect()
+{
+    $.ajax({
+        url: '/travel/trips/get_trips',
+        success: function(data) {
+	    var e = $('#trip-select');
+	    for (var i in data){
+	      var trip = data[i];
+              var t = $('<div class="trip-nav"><a href="/travel/trips/map/' + trip.id + '">' + trip.name + '</a></div>');
+	      e.append(t);
+	    }
+	}
+    });
+}
+
 window.onload = function() {
    sizeContent();
    initialize();
    buildOptions();
+   addTripSelect();
    addKeyboardNav();
 }
 
