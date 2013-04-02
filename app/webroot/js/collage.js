@@ -42,14 +42,21 @@ function getFancyboxOptions(i)
   };
 };
 
-function onLoaded(img, title, link, affinity) {
+function onLoaded(img, title, link, affinity, album_id) {
    var element = img;
    if (link){
-      title = "<span>" + title + "</span><span class='map-link'><a href='" + link + "'>map</a></span>";
-      var a = $('<a class="fancy-image" rel="foo" title="' + title + '" href="' + img.attr('src') + '"></a>');
+      var a = $('<a class="fancy-image" data-title="'+title+'" data-link="'+link+'" data-album="'+album_id+'" href="' + img.attr('src') + '"></a>');
 
       a.bind("click", (function(i){ 
         return function() {
+	  $('a.fancy-image[data-title]').each(function(){
+	     var caption = get_caption($(this).attr('data-title'), 
+				       $(this).attr('data-link'), 
+				       $(this).attr('data-album'));
+	      $(this).attr('title', caption);
+	      $(this).removeAttr('data-title');
+	  });
+
           $.fancybox.open($("a.fancy-image"), getFancyboxOptions(i));
           return false;
         }
@@ -70,8 +77,8 @@ function onLoaded(img, title, link, affinity) {
    imageProcessed();
 }
 
-function loadClosure(img, title, link, affinity) {
-    return function() { setTimeout(function() { onLoaded(img, title, link, affinity) }, 0); };
+function loadClosure(img, title, link, affinity, album_id) {
+    return function() { setTimeout(function() { onLoaded(img, title, link, affinity, album_id) }, 0); };
 }
 
 function layout(images) {
@@ -81,7 +88,7 @@ function layout(images) {
    for (var i = 0; i < images.length; ++i) {
       var tooltip = images[i].title ? images[i].title : '';
       var img = $('<img id="photo' + i + '" src="' + images[i].image + '" title="' + tooltip + '" style="padding:' + padding / 2 + 'px">');
-      img.load( loadClosure(img, tooltip, images[i].link, images[i].affinity, images.length) );
+      img.load( loadClosure(img, tooltip, images[i].link, images[i].affinity, images[i].album_id, images.length) );
       img.error(imageProcessed);
    }
 }

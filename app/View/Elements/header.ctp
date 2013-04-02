@@ -80,13 +80,13 @@ function create_link($t, $view, $id, $target_view, $text)
     if (start)
 	name += ' (' + start.getFullYear()+ ')';
 
-    return $('<li class="ui-menu-item" role="menuitem"><a class="trip-link" href="/travel/trips/<?php echo $view ?>/' + trip.id + '">' + name + '</a></li>');
+    return $('<li class="ui-menu-item" role="menuitem"><a class="trip-link" href="<?php echo $this->Html->url('/trips/'.$view) ?>/' + trip.id + '">' + name + '</a></li>');
   }
 
   function addTripSelect()
   {
     $.ajax({
-        url: '/travel/trips/get_trips',
+        url: '<?php echo $this->Html->url('/trips/get_trips') ?>',
         success: function(data) {
             var menu = $('#trip-menu');
             menu.empty();

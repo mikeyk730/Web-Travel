@@ -19,6 +19,8 @@ class TripsController extends AppController {
       $locations = $data['Location'];
       foreach ($locations as $i => $location){
         $data['Location'][$i]['name'] = $this->Trip->Location->get_name($location);
+        $data['Location'][$i]['thumb'] = $this->get_sharded_url($location['thumb']);
+        $data['Location'][$i]['image'] = $this->get_sharded_url($location['image']);
       }
 
       $this->set('trip', $data);   
@@ -59,6 +61,16 @@ class TripsController extends AppController {
       return parent::json_response($this->Trip->read());
    }
 
+   private function get_sharded_url($path)
+   {
+      if (!$path || strcmp(substr($path,0,4),"http") == 0){ 
+         return $path; 
+      }
+      $crc = crc32($path);
+      $n = $crc % 4 + 1;
+      return "http://img".$n.".mkaminski.com/travel/".$path;
+   }
+
    public function get_locations($id = null)
    {
       $this->Trip->id = $id;
@@ -74,8 +86,8 @@ class TripsController extends AppController {
                          'name' => $this->Trip->Location->get_name($location),
                          'affinity' => $location['affinity'],
                          'description' => $location['description'],
-                         'image' => $location['image'],
-                         'thumb' => $location['thumb'],
+                         'image' => $this->get_sharded_url($location['image']),
+                         'thumb' => $this->get_sharded_url($location['thumb']),
                          'flag' => $location['City']['Country']['code'],
                          'airport' => $location['airport'],
                          'best_time' => $location['best_time'],

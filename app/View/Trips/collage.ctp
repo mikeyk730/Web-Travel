@@ -23,7 +23,7 @@
         font-family: Verdana;
       }
       
-      .map-link
+      .map-link, .album-link
       {
         float: right;
         margin-left: 5px;
@@ -44,7 +44,7 @@
 <?php
    foreach ($trip['Location'] as $location){
      if ($location['image']){
-       echo("images.push({'image':'".$this->Html->url("/".$location['image'])."','link':'".$this->Html->url('/trips/map/'.$trip['Trip']['id'].'#'.$location['id'])."','title':'".$location['name']."','affinity':'".$location['affinity']."'});\n");
+       echo("images.push({'image':'".$location['image']."','link':'".$this->Html->url('/trips/map/'.$trip['Trip']['id'].'#'.$location['id'])."','title':'".$location['name']."','affinity':'".$location['affinity']."','album_id':'".$location['album']."'});\n");
      }
    }
 ?>
@@ -52,9 +52,14 @@
         layout(images);
       }
 
-$(document).ready(function(){
-      handlePlaces();
-});
+      $.ajax({
+        url: "<?php echo $this->Html->url('/trips/get_albums/'.$trip['Trip']['id']) ?>",
+        success: process_album_data
+      });
+
+      $(document).ready(function(){
+        handlePlaces();
+      });
     </script>
  </head>
   <body>

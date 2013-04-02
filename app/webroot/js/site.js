@@ -6,7 +6,7 @@ function getPlaceHtml(place)
 	+ '<div id="latlon" onclick="panAndZoom(' + place.lat + ', ' + place.lon + ', 5);"><img src="/travel/images/globe.png">' + place.lat + ', ' + place.lon + '</div>'
 	+ getDateHtml(place.date)
 	+ (place.description ? '<div id="description-area" >' + place.description + '</div>' : '')
- 	+ (place.image ? '<div id="image-area" ><a target="_blank" href="/travel/' + place.image + '"><img class="photo" src="/travel/' + place.image + '" /></a></div>' : '')
+ 	+ (place.image ? '<div id="image-area" ><a target="_blank" href="' + place.image + '"><img class="photo" src="' + place.image + '" /></a></div>' : '')
  	+ (place.airport ? '<div id="airport"><img src="/travel/images/plane.png" />' + place.airport.toUpperCase() + '</div>' : '')
  	+ '<div id="best_time"><span id="time_label"></span><table><tr></tr></table></div>';
 }
@@ -50,7 +50,7 @@ function getRecentBox(place)
 {
     var img_div =  $('<div class="nav-image"></div>');
     img_div.append($('<div class="nav-text">' + place.name + '</div>'));
-    img_div.append($('<img src="/travel/' + (place.thumb ? place.thumb : 'thumbs/placeholder.jpg') + '"></img>'));
+    img_div.append($('<img src="' + (place.thumb ? place.thumb : '/travel/thumbs/placeholder.jpg') + '"></img>'));
     img_div.click(function(){ loadPlace(place.id, true); });
 
     var li = $('<li class="recent" id="box' + place.id + '"></li>');
