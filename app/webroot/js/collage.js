@@ -1,6 +1,6 @@
 ﻿var total_image_count = 0;
 var processed_image_count = 0;
-var avg_width = 900;
+var avg_width = 925;
 var delta_height = 40;
 var avg_height = 150;
 var padding = 6;
@@ -19,7 +19,19 @@ function getTargetHeight(height, width, target_width) {
 var loaded_images_been = [];
 var loaded_images_want = [];
 
-var fancybox_options = {
+function imageProcessed()
+{
+   processed_image_count++;
+   //console.log('loaded ' + processed_image_count + ' of ' + total_image_count);
+   if (total_image_count == processed_image_count){
+     endLoad();
+   }
+}
+
+function getFancyboxOptions(i)
+{
+  return {
+    index: i,
     nextEffect: 'none',
     prevEffect: 'none',
     helpers:  {
@@ -27,30 +39,22 @@ var fancybox_options = {
 	    type : 'inside'
         }
     }
+  };
 };
-
-$(document).ready(function(){
-    $("a.fancy-image").live("mouseover focus", function() {
-	$("a.fancy-image").fancybox(fancybox_options);
-    });
-});
-
-function imageProcessed()
-{
-   processed_image_count++;
-   //console.log('loaded ' + processed_image_count + ' of ' + total_image_count);
-   if (total_image_count == processed_image_count){
-     endLoad();
-     //$('.fancy-image').fancybox(fancybox_options); 
-   }
-}
 
 function onLoaded(img, title, link, affinity) {
    var element = img;
    if (link){
       title = "<span>" + title + "</span><span class='map-link'><a href='" + link + "'>map</a></span>";
       var a = $('<a class="fancy-image" rel="foo" title="' + title + '" href="' + img.attr('src') + '"></a>');
-      //a.fancybox( fancybox_options);
+
+      a.bind("click", (function(i){ 
+        return function() {
+          $.fancybox.open($("a.fancy-image"), getFancyboxOptions(i));
+          return false;
+        }
+      })(processed_image_count));
+
       element = a.append(img);
    }
 

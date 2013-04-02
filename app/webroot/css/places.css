@@ -362,3 +362,23 @@ button
   vertical-align: middle;
   margin-left: 3px;
 }
+
+.ui-menu { position: absolute; width: 200px; z-index:999999 }
+
+.ui-button-text-only .ui-button-text
+{
+    padding: .2em .3em .2em .2em;
+    font-size: 1.5em;
+    color: black;
+}
+
+.ui-button-icon-only .ui-button-text
+{
+    padding: .2em;
+    font-size: 1.5em;
+}
+
+.ui-buttonset .ui-button
+{
+    margin-right: -.4em;
+}

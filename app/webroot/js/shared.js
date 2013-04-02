@@ -84,16 +84,6 @@ function getAffinityArray() {
    return affinity.split(',');
 }
 
-function dateFromString(str)
-{
-    if (!str) 
-	return null;
-    var a = str.split("-");
-    var d = new Date();
-    d.setFullYear(parseInt(a[0]), parseInt(a[1])-1, parseInt(a[2]));
-    return d;
-}
-
 function sizeContent() {
 /*
     if (document.body.clientWidth > 1000)

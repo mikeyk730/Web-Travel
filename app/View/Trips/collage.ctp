@@ -3,6 +3,7 @@
   <head>
     <title>Mike's Adventures</title>
 
+    <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <link type="text/css" rel="stylesheet" href="<?php echo $this->Html->url('/js/fancybox-2.0/jquery.fancybox.css'); ?>"></link> 
     <link type="text/css" rel="stylesheet" href="<?php echo $this->Html->url('/css/places.css'); ?>"></link>
     <style type="text/css">
@@ -10,8 +11,10 @@
 
       #photos-been, #photos-want
       {
-        width: 950px;
-        margin: auto;
+        width: 980px;
+        padding-right: 25px;
+        padding-left: 25px;
+        padding-bottom: 7px;
       }
  
       .fancybox-title
@@ -27,7 +30,8 @@
       }
    </style>
     
-    <script type="text/javascript" src="<?php echo $this->Html->url('/js/jquery-1.6.1.js'); ?>"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo $this->Html->url('/js/fancybox-2.0/jquery.fancybox.pack.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->Html->url('/js/loader.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo $this->Html->url('/js/collage.js'); ?>"></script>
@@ -55,14 +59,7 @@ $(document).ready(function(){
  </head>
   <body>
     <div id="main_page">
-      <div id="header">
-	<div id="header1"><?php echo h($trip['Trip']['name']); ?></div>
-	<div id="where">The world is a beautiful place!</div>
-      </div>
-      <div id="links">
-	<a href="<?php echo $this->Html->url('/trips/map/'.$trip['Trip']['id']) ?>">Map View</a> | 
-	<a href="<?php echo $this->Html->url('/trips/listing/'.$trip['Trip']['id']) ?>">Location List</a> | Photo Collage
-      </div>
+      <?php echo $this->element('header', array('view' => 'collage', 'trip' => $trip['Trip'])); ?>
       <div id="content">
 	<div class="loader"></div>
 	<div id="photos-been-title" class="category"></div>

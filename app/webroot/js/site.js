@@ -144,58 +144,10 @@ function local_init()
     }
 }
 
-function generateTripNav(trip)
-{
-    var t = $('<div class="trip-nav ' + trip.status + '"></div>');
-
-    var name = trip.name;
-    var start = dateFromString(trip.start_date);
-    var end = dateFromString(trip.end_date);
-
-    if (start)
-	name += ' (' + start.getFullYear()+ ')';
-    t.append('<a class="trip-link" href="/travel/trips/map/' + trip.id + '">' + name + '</a>');
-    
-    if (start && end){
-	var delta = end - start;
-	var days = Math.round(delta / 1000 / 60 / 60 / 24);
-	t.append('<div class="trip-days">' + days + ' days</div>');
-    }
-    
-    t.append('<div class="trip-description">' + trip.description + '</div>');
-    return t;
-}
-
-function generateTripMenuItem(trip)
-{
-    var name = trip.name;
-    var start = dateFromString(trip.start_date);
-    if (start)
-	name += ' (' + start.getFullYear()+ ')';
-
-    return $('<li class="ui-menu-item" role="menuitem"><a class="trip-link" href="/travel/trips/map/' + trip.id + '">' + name + '</a></li>');
-}
-
-function addTripSelect()
-{
-    $.ajax({
-        url: '/travel/trips/get_trips',
-        success: function(data) {
-	    //var e = $('#trip-select');
-            var menu = $('#trip-menu');
-	    for (var i in data){
-	      //e.append(generateTripNav(data[i]));
-              menu.append(generateTripMenuItem(data[i]));
-	    }
-	}
-    });
-}
-
 window.onload = function() {
    sizeContent();
    initialize();
    buildOptions();
-   addTripSelect();
    addKeyboardNav();
 }
 

@@ -19,7 +19,7 @@
 <html>
   <head>
     <title>Mike's Adventures</title>
-    
+    <link type="text/css" rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
     <link type="text/css" rel="stylesheet" href="<?php echo $this->Html->url('/css/places.css'); ?>"></link>
     <style type="text/css">
       .category
@@ -30,17 +30,12 @@
 
       #content { clear: both; }
     </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
  </head>
   <body>
     <div id="main_page">
-      <div id="header">
-	<div id="header1"><?php echo h($trip['Trip']['name']); ?></div>
-	<div id="where">So many places to visit!</div>
-      </div>
-      <div id="links">
-	<a href="<?php echo $this->Html->url('/trips/map/'.$trip['Trip']['id']) ?>">Map View</a> | Location List | 
-	<a href="<?php echo $this->Html->url('/trips/collage/'.$trip['Trip']['id']) ?>">Photo Collage</a>
-      </div>
+      <?php echo $this->element('header', array('view' => 'listing', 'trip' => $trip['Trip'])); ?>
       <div id="content">
 	<?php 
 	   $url = $this->Html->url("/trips/map/".$trip['Trip']['id']);
