@@ -32,7 +32,7 @@
 <?php
    foreach ($trip['Location'] as $location){
      if ($location['image']){
-       echo("images.push({'image':'".$location['image']."','link':'".$this->Html->url('/trips/map/'.$trip['Trip']['id'].'#'.$location['id'])."','title':'".$location['name']."','affinity':'".$location['affinity']."','album':'".$this->Html->url('/albums/go/'.$location['album'])."'});\n");
+       echo("images.push({'image':'".$location['image']."','link':'".$this->Html->url('/trips/map/'.$trip['Trip']['id'].'#'.$location['id'])."','title':'".$location['name']."','affinity':'".$location['affinity']."','album':".($location['album'] ? "'".$this->Html->url('/albums/go/'.$location['album'])."'" : 'null')."});\n");
      }
    }
 ?>

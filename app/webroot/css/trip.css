@@ -2,10 +2,60 @@
 { 
    font-family: Verdana, Helvetica, Sans-Serif;
    font-size: 0.8em;
-   margin: 0;
 }
 
-div.description
+div, p
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+div.entry
+{
+   margin-bottom: 35px;
+}
+
+div.header
 {
     width: 600px;
+}
+
+#main img
+{
+    width: 580px;
+    margin: 0;
+}
+
+.image, .description
+{
+    margin-bottom: 6px;
+}
+
+.name
+{
+    text-align: right;
+    float: right;
+    font-size: 2em;
+    margin-top: 5px;
+    margin-right: 7px;
+}
+
+.entry
+{
+    margin-left: 10px;
+}
+
+.description
+{
+   width: 590px;
+   clear: both;
+   margin: 5px;
+}
+
+.image
+{
+    clear: both;
+    padding: 8px;
+    border: black solid 1px;
+    width: 580px;
 }

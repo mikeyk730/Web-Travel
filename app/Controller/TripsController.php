@@ -7,22 +7,38 @@ class TripsController extends AppController {
       return 1;
    }
 
-   private function set_trip_data($id)
+   private function default_contains_array()
+   {
+      return array('Location' => array('order' => array('order'), 
+                                       'City' => array('fields' => array('lat','lon','name','address'),
+                                                       'Country' => array('fields' => array('name','code')))));
+   }
+
+   private function set_trip_data($id, $contains = null)
    {
       if ($id == null) $id = $this->default_trip_id();
+      if ($contains == null) $contains = $this->default_contains_array();
+
       $this->Trip->id = $id;
-      $this->Trip->contain(array('Location' => array('order' => array('order'), 
-                                                     'City' => array('fields' => array('lat','lon','name','address'),
-                                                                     'Country' => array('fields' => array('name','code'))))));
+      $this->Trip->contain($contains);
       $data = $this->Trip->read();
     
-      $locations = $data['Location'];
-      foreach ($locations as $i => $location){
-        $data['Location'][$i]['name'] = $this->Trip->Location->get_name($location);
-        $data['Location'][$i]['thumb'] = $this->get_sharded_url($location['thumb']);
-        $data['Location'][$i]['image'] = $this->get_sharded_url($location['image']);
+      if (isset($data['Location'])){
+         $locations = $data['Location'];
+         foreach ($locations as $i => $location){
+            $data['Location'][$i]['name'] = $this->Trip->Location->get_name($location);
+            $data['Location'][$i]['thumb'] = $this->get_sharded_url($location['thumb']);
+            $data['Location'][$i]['image'] = $this->get_sharded_url($location['image']);
+         }
       }
 
+      if (isset($data['Album'])){
+         $albums = $data['Album'];
+         foreach ($albums as $i => $album){
+            $data['Album'][$i]['thumb'] = $this->get_sharded_url($album['thumb']);
+         }
+      }
+      
       $this->set('trip', $data);   
    }
 
@@ -44,6 +60,17 @@ class TripsController extends AppController {
    public function collage($id = null)
    {
       $this->set_trip_data($id);
+   }
+
+   public function overview($id = null)
+   {
+      $this->set_trip_data($id);
+   }
+
+   public function albums($id = null)
+   {
+      $contains = array('Album' => array('order' => array('order')));
+      $this->set_trip_data($id, $contains);
    }
 
    public function get_json($id = null)
