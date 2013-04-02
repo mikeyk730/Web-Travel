@@ -16,19 +16,7 @@
         padding-left: 25px;
         padding-bottom: 7px;
       }
- 
-      .fancybox-title
-      {
-        font-weight: bold;
-        font-family: Verdana;
-      }
-      
-      .map-link, .album-link
-      {
-        float: right;
-        margin-left: 5px;
-      }
-   </style>
+    </style>
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -44,18 +32,13 @@
 <?php
    foreach ($trip['Location'] as $location){
      if ($location['image']){
-       echo("images.push({'image':'".$location['image']."','link':'".$this->Html->url('/trips/map/'.$trip['Trip']['id'].'#'.$location['id'])."','title':'".$location['name']."','affinity':'".$location['affinity']."','album_id':'".$location['album']."'});\n");
+       echo("images.push({'image':'".$location['image']."','link':'".$this->Html->url('/trips/map/'.$trip['Trip']['id'].'#'.$location['id'])."','title':'".$location['name']."','affinity':'".$location['affinity']."','album':'".$this->Html->url('/albums/go/'.$location['album'])."'});\n");
      }
    }
 ?>
         images.sort(function() { return 0.5 - Math.random() })
         layout(images);
       }
-
-      $.ajax({
-        url: "<?php echo $this->Html->url('/trips/get_albums/'.$trip['Trip']['id']) ?>",
-        success: process_album_data
-      });
 
       $(document).ready(function(){
         handlePlaces();

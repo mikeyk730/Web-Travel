@@ -6,9 +6,10 @@ function getPlaceHtml(place)
 	+ '<div id="latlon" onclick="panAndZoom(' + place.lat + ', ' + place.lon + ', 5);"><img src="/travel/images/globe.png">' + place.lat + ', ' + place.lon + '</div>'
 	+ getDateHtml(place.date)
 	+ (place.description ? '<div id="description-area" >' + place.description + '</div>' : '')
- 	+ (place.image ? '<div id="image-area" ><a target="_blank" href="' + place.image + '"><img class="photo" src="' + place.image + '" /></a></div>' : '')
- 	+ (place.airport ? '<div id="airport"><img src="/travel/images/plane.png" />' + place.airport.toUpperCase() + '</div>' : '')
- 	+ '<div id="best_time"><span id="time_label"></span><table><tr></tr></table></div>';
+ 	+ (place.image ? '<div id="image-area" ><a href="' + place.image + '" title="' + get_caption(place.name, null, '/travel/albums/go/'+place.album) + '"><img class="photo" src="' + place.image + '" /></a></div>' : '')
+// 	+ (place.airport ? '<div id="airport"><img src="/travel/images/plane.png" />' + place.airport.toUpperCase() + '</div>' : '')
+        + (place.album ?  '<div id="album"><a target="_blank" href="/travel/albums/go/' + place.album + '"><img src="/travel/images/camera32.png" />Album</a></div>' : '')
+	+ '<div id="best_time"><span id="time_label"></span><table><tr></tr></table></div>';
 }
 
 function addKeyboardNav()
@@ -113,8 +114,13 @@ function loadSidebar(place) {
       addNavigation(next, place.next);
 
       $('#image-area a').fancybox({
-        'transitionIn'	: 'none',
-        'transitionOut'	: 'none'	
+        nextEffect: 'none',
+        prevEffect: 'none',
+        helpers:  {
+          title : {
+	    type : 'inside'
+          }
+        }
       });    
 
       var best_time = place.best_time;

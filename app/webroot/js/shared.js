@@ -84,31 +84,11 @@ function getAffinityArray() {
    return affinity.split(',');
 }
 
-var albums = {
-  add: function(album)
-  {
-    this.data[album.id] = album;
-  },
-  get: function(id)
-  {
-    return this.data[id];
-  },
-  data: {}
-};
-
-function process_album_data(data)
-{
-   for (var i in data){
-      albums.add(data[i]);
-   }
-}
-
-function get_caption(title, link, album_id)
+function get_caption(title, link, album_link)
 {
   var caption = "<span>" + title + "</span>";
-  var album = albums.get(album_id);
-  if (album && album.url){
-    caption += "<span class='album-link'> | <a href='" + album.url + "' target='_blank'>album</a></span>";
+  if (album_link){
+    caption += "<span class='album-link'>" + (link ? ' | ' : '') + "<a href='" + album_link + "' target='_blank'>album</a></span>";
   }
   if (link){
     caption += "<span class='map-link'><a href='" + link + "'>map</a></span>";

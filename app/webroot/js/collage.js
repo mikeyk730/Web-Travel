@@ -42,21 +42,15 @@ function getFancyboxOptions(i)
   };
 };
 
-function onLoaded(img, title, link, affinity, album_id) {
+function onLoaded(img, title, link, affinity, album_link) {
    var element = img;
    if (link){
-      var a = $('<a class="fancy-image" data-title="'+title+'" data-link="'+link+'" data-album="'+album_id+'" href="' + img.attr('src') + '"></a>');
+
+      var caption = get_caption(title, link, album_link); 
+      var a = $('<a class="fancy-image" title="' + caption + '" href="' + img.attr('src') + '"></a>');
 
       a.bind("click", (function(i){ 
         return function() {
-	  $('a.fancy-image[data-title]').each(function(){
-	     var caption = get_caption($(this).attr('data-title'), 
-				       $(this).attr('data-link'), 
-				       $(this).attr('data-album'));
-	      $(this).attr('title', caption);
-	      $(this).removeAttr('data-title');
-	  });
-
           $.fancybox.open($("a.fancy-image"), getFancyboxOptions(i));
           return false;
         }
@@ -77,8 +71,8 @@ function onLoaded(img, title, link, affinity, album_id) {
    imageProcessed();
 }
 
-function loadClosure(img, title, link, affinity, album_id) {
-    return function() { setTimeout(function() { onLoaded(img, title, link, affinity, album_id) }, 0); };
+function loadClosure(img, title, link, affinity, album_link) {
+    return function() { setTimeout(function() { onLoaded(img, title, link, affinity, album_link) }, 0); };
 }
 
 function layout(images) {
@@ -88,7 +82,7 @@ function layout(images) {
    for (var i = 0; i < images.length; ++i) {
       var tooltip = images[i].title ? images[i].title : '';
       var img = $('<img id="photo' + i + '" src="' + images[i].image + '" title="' + tooltip + '" style="padding:' + padding / 2 + 'px">');
-      img.load( loadClosure(img, tooltip, images[i].link, images[i].affinity, images[i].album_id, images.length) );
+      img.load( loadClosure(img, tooltip, images[i].link, images[i].affinity, images[i].album, images.length) );
       img.error(imageProcessed);
    }
 }

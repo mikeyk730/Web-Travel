@@ -9,4 +9,12 @@ class AlbumsController extends AppController {
       $albums = $this->Album->find('all', array('conditions' => $conditions));
       $this->set('json', $albums);
    }
+
+   public function go($id)
+   {
+     $this->Album->id = $id;
+     $data = $this->Album->read();
+     $url = $data['Album']['url'];
+     $this->redirect($url);
+   }
 }

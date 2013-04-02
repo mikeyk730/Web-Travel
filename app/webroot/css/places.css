@@ -209,11 +209,13 @@ div.category ol {
    text-align: center;
    margin: 5px 0px;
 }
+
 #latlon:hover
 {
    text-decoration: underline;
    cursor: pointer;
 }
+
 #latlon img
 {
    margin-bottom: -2px;
@@ -221,7 +223,7 @@ div.category ol {
    !margin-left: 7px;
 }
 
-#airport img
+#airport img, #album img
 {
    margin-bottom: -2px;
    margin-right: 5px;
@@ -272,7 +274,7 @@ a { text-decoration: none; }
    opacity:1.0;
 }
 
-#description-area, #image-area, #airport, #best_time
+#description-area, #image-area, #airport, #best_time, #album
 {
    margin: 5px 0px 5px 0px;
 }
@@ -381,4 +383,29 @@ button
 .ui-buttonset .ui-button
 {
     margin-right: -.4em;
+}
+
+.fancybox-title
+{
+    font-weight: bold;
+    font-family: Verdana;
+}
+
+.map-link, .album-link
+{
+    float: right;
+    margin-left: 5px;
+}
+
+#album
+{
+    font-size: 1.3em;
+}
+
+#album img
+{
+    vertical-align: bottom;
+    margin-right: 7px;
+    margin-left: 4px;
+    margin-top: 5px;
 }
