@@ -59,6 +59,15 @@ function buildOptions() {
    optionHelper('will', affinities);
    optionHelper('want', affinities);
    optionsHelperPath();
+
+   $('.setting').hide();
+   $('#options').mouseleave(function(){
+     $('.setting').hide();
+   });
+
+   $('#settings-icon').click(function(){
+     $('.setting').toggle();
+   });
 }
 
 function drawLines(plotter, places) {

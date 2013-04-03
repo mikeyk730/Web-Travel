@@ -350,12 +350,24 @@ button
 #options
 {
     position: absolute;
-    top: 420px;
+    top: 423px;
     right: 4px;
-    padding: 3px;
+    padding: 0px 3px 0px 4px;
     background-color: white;
-    border-top: solid 1px black;
-    border-left: solid 1px black;
+    border-top: solid 1px #808080;
+    border-left: solid 1px #808080;
+    border-top-left-radius: 4px;
+}
+
+.setting input
+{
+    margin-top: 10px;
+}
+
+#options img
+{
+    margin-top: 3px;
+    height: 20px;
 }
 
 .trip-select-button

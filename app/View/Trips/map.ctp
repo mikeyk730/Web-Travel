@@ -99,10 +99,11 @@ var MyPlaces = {
 	  <div id="options">
 	    <table>
 	      <tr>
-		<td id="check-been"><img/><input type="checkbox"/>been</td>
-		<td id="check-will"><img/><input type="checkbox"/>planned</td>
-		<td id="check-want"><img/><input type="checkbox"/>want</td>
-		<td id="check-paths"><input type="checkbox"/>paths</td>
+		<td id="check-been" class="setting"><img/><input type="checkbox"/>been</td>
+		<td id="check-will" class="setting"><img/><input type="checkbox"/>planned</td>
+		<td id="check-want" class="setting"><img/><input type="checkbox"/>want</td>
+		<td id="check-paths" class="setting"><input type="checkbox"/>paths</td>
+      <td><img id="settings-icon" src="/travel/images/settings.png" /></td>
 	      </tr>      
 	    </table>
 	  </div>
