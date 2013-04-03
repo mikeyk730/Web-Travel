@@ -84,3 +84,9 @@ div.links img
     background-color: white;
     width: 580px;
 }
+
+.map-link, .album-link
+{
+    float: right;
+    margin-left: 5px;
+}
