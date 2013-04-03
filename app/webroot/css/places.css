@@ -46,6 +46,7 @@
 
 #content
 {
+    clear: both;
     background-color: #fff;
     overflow: hidden;
     width: 982px;
