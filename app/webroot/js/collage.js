@@ -2,7 +2,7 @@
 var processed_image_count = 0;
 var avg_width = 925;
 var delta_height = 40;
-var avg_height = 150;
+var avg_height = 220;
 var padding = 6;
 
 function getTargetWidth(w, h, target_height)

@@ -393,19 +393,26 @@ button
 
 .map-link, .album-link
 {
-    float: right;
     margin-left: 5px;
 }
 
 #album
 {
+    clear: both;
     font-size: 1.3em;
+    text-align: center;
+    margin-top: 12px;
 }
 
 #album img
 {
-    vertical-align: bottom;
-    margin-right: 7px;
-    margin-left: 4px;
-    margin-top: 5px;
+    vertical-align: middle;
+    margin: -6px 3px 0px 0px;
+}
+
+#album-text
+{
+  padding: 0px 5px 1px;
+  !background-color: white;
+  !border: 1px solid #808080;
 }

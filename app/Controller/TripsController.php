@@ -69,7 +69,7 @@ class TripsController extends AppController {
 
    public function albums($id = null)
    {
-      $contains = array('Album' => array('order' => array('order')));
+      $contains = array('Album' => array('order' => array('order DESC')));
       $this->set_trip_data($id, $contains);
    }
 

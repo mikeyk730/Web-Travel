@@ -59,7 +59,6 @@ function create_link($t, $view, $id, $target_view, $text)
 	</div>
 <div id="links"><?php echo create_link($this, $view, $trip['id'], "map", "Map") ?> | 
   <?php echo create_link($this, $view, $trip['id'], "overview", "Recap") ?> | 
-  <?php echo create_link($this, $view, $trip['id'], "listing", "List") ?> | 
   <?php echo create_link($this, $view, $trip['id'], "albums", "Albums") ?> | 
   <?php echo create_link($this, $view, $trip['id'], "collage", "Photo Collage") ?>
 </div>
